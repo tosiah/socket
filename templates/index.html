@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Vote</title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+        <script src="{{ url_for('static', filename='index.js')}}"></script>
+    </head>
+    <body>
+        <ul id="votes">
+        </ul>
+        <span id="yeses">0</span>
+        <span id="noes">0</span>
+        <span id="maybies">0</span>
+        <hr>
+        <button data-vote="yes">Yes</button>
+        <button data-vote="no">No</button>
+        <button data-vote="maybe">Maybe</button>
+    </body>
+</html>
