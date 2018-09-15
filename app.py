@@ -8,12 +8,16 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
+
+votes={"yesV": 0, "noV": 0, "maybeV": 0}
+optionMap = {"yes": "yesV", "no": "noV", "maybe": "maybeV"}
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", votes=votes)
 
 @socketio.on("submit vote")
 def vote(data):
     chosenOption = data["clicked"]
-    value = data["value"];
-    emit("announce vote", {"returnedOption": chosenOption, "value": value}, broadcast=True)
+    votes[optionMap[chosenOption]]=votes[optionMap[chosenOption]]+1
+    emit("announce vote", votes, broadcast=True)
